@@ -9,12 +9,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController textController = TextEditingController();
   String urlValue = "https://google.com";
+  FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return WebviewScaffold(
       url: urlValue,
+      withZoom: true,
       appBar: AppBar(
         centerTitle: true,
         title: Container(
@@ -34,6 +36,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               IconButton(
+                tooltip: "Search",
                 icon: Icon(
                   Icons.search,
                   color: Colors.blue,
@@ -41,6 +44,8 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () async {
                   setState(() {
                     urlValue = textController.text;
+                    flutterWebviewPlugin.reloadUrl(urlValue);
+                    print(urlValue);
                   });
                 },
               )
