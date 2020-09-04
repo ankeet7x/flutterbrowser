@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onPressed: () async {
                   setState(() {
-                    urlValue = textController.text;
+                    urlValue = "https://" + textController.text;
                     flutterWebviewPlugin.reloadUrl(urlValue);
                     print(urlValue);
                   });
